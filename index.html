@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mostyn Apicultura — Miel Natural</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+    <style>
+        /* =============================================
+           VARIABLES & RESET
+        ============================================= */
+        :root {
+            --orange:       #F5A623;
+            --orange-dark:  #D4891A;
+            --orange-glow:  rgba(245,166,35,0.35);
+            --orange-light: #FEF3DC;
+            --black:        #0D0D0D;
+            --dark:         #141414;
+            --white:        #FFFFFF;
+            --cream:        #FFF9F0;
+            --gray:         #6B6B6B;
+            --gray-light:   #F5F4F2;
+            --radius-sm:    12px;
+            --radius-md:    20px;
+            --radius-lg:    28px;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--white);
+            color: var(--black);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img { display: block; max-width: 100%; }
+
+        /* =============================================
+           NAVBAR
+        ============================================= */
+        nav {
+            position: fixed;
+            inset: 0 0 auto 0;
+            z-index: 1000;
+            padding: 1.6rem 5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background .35s, backdrop-filter .35s, padding .35s, box-shadow .35s;
+        }
+
+        nav.scrolled {
+            background: rgba(13,13,13,.94);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            padding: 1rem 5rem;
+            box-shadow: 0 1px 0 rgba(255,255,255,.06);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: .8rem;
+            text-decoration: none;
+        }
+
+        .nav-logo img {
+            height: 38px;
+            filter: brightness(0) invert(1);
+            transition: transform .3s;
+        }
+
+        .nav-logo:hover img { transform: scale(1.06); }
+
+        .nav-logo-text {
+            font-size: 1.35rem;
+            font-weight: 900;
+            color: var(--white);
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+
+        .nav-logo-text em {
+            font-style: normal;
+            color: var(--orange);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2.75rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255,255,255,.75);
+            text-decoration: none;
+            font-size: .82rem;
+            font-weight: 500;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            transition: color .2s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -3px; left: 0; right: 0;
+            height: 2px;
+            background: var(--orange);
+            transform: scaleX(0);
+            transition: transform .25s;
+        }
+
+        .nav-links a:hover { color: var(--white); }
+        .nav-links a:hover::after { transform: scaleX(1); }
+
+        .nav-cta {
+            background: var(--orange) !important;
+            color: var(--black) !important;
+            padding: .55rem 1.4rem;
+            border-radius: 100px;
+            font-weight: 700 !important;
+            transition: background .2s, box-shadow .2s, transform .2s !important;
+        }
+
+        .nav-cta::after { display: none !important; }
+
+        .nav-cta:hover {
+            background: var(--orange-dark) !important;
+            box-shadow: 0 6px 20px var(--orange-glow);
+            transform: translateY(-1px);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: .3rem;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--white);
+            border-radius: 2px;
+            transition: .3s;
+        }
+
+        /* =============================================
+           HERO
+        ============================================= */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 680px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: url('_DSC3273.jpg') center/cover no-repeat;
+            will-change: transform;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(to bottom, rgba(13,13,13,.55) 0%, rgba(13,13,13,.2) 50%, rgba(13,13,13,.65) 100%),
+                linear-gradient(135deg, rgba(13,13,13,.4) 0%, transparent 60%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: var(--white);
+            max-width: 820px;
+            padding: 0 2rem;
+        }
+
+        .hero-logo {
+            width: 80px;
+            margin: 0 auto 2rem;
+            filter: brightness(0) invert(1);
+            animation: fadeDown .8s ease both;
+        }
+
+        .hero-eyebrow {
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .35em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 1.2rem;
+            animation: fadeDown .8s .1s ease both;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3.8rem, 9vw, 7.5rem);
+            font-weight: 900;
+            line-height: .95;
+            letter-spacing: -.025em;
+            margin-bottom: 1.6rem;
+            animation: fadeDown .8s .2s ease both;
+        }
+
+        .hero h1 .accent { color: var(--orange); }
+
+        .hero-desc {
+            font-size: clamp(.95rem, 1.8vw, 1.15rem);
+            font-weight: 300;
+            line-height: 1.75;
+            color: rgba(255,255,255,.82);
+            max-width: 480px;
+            margin: 0 auto 2.8rem;
+            animation: fadeDown .8s .3s ease both;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeDown .8s .4s ease both;
+        }
+
+        .btn-primary {
+            background: var(--orange);
+            color: var(--black);
+            padding: .95rem 2.6rem;
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: .9rem;
+            text-decoration: none;
+            letter-spacing: .04em;
+            transition: transform .2s, box-shadow .2s, background .2s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 40px var(--orange-glow);
+            background: var(--orange-dark);
+        }
+
+        .btn-ghost {
+            border: 1.5px solid rgba(255,255,255,.5);
+            color: var(--white);
+            padding: .95rem 2.6rem;
+            border-radius: 100px;
+            font-weight: 500;
+            font-size: .9rem;
+            text-decoration: none;
+            letter-spacing: .04em;
+            transition: border-color .2s, background .2s;
+        }
+
+        .btn-ghost:hover {
+            border-color: rgba(255,255,255,.9);
+            background: rgba(255,255,255,.08);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: .5rem;
+            color: rgba(255,255,255,.45);
+            font-size: .62rem;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            animation: fadeDown 1.2s .9s ease both;
+        }
+
+        .hero-scroll-line {
+            width: 1px;
+            height: 48px;
+            background: linear-gradient(to bottom, transparent, rgba(255,255,255,.55));
+            animation: scrollBounce 2s ease-in-out infinite;
+        }
+
+        /* =============================================
+           STATS STRIP
+        ============================================= */
+        .stats {
+            background: var(--black);
+            padding: 3rem 5rem;
+            display: flex;
+            justify-content: center;
+            gap: 5rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-num {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: var(--orange);
+            line-height: 1;
+            letter-spacing: -.03em;
+        }
+
+        .stat-label {
+            font-size: .68rem;
+            font-weight: 600;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.4);
+            margin-top: .5rem;
+        }
+
+        /* =============================================
+           SHARED SECTION STYLES
+        ============================================= */
+        .section-eyebrow {
+            font-size: .7rem;
+            font-weight: 700;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3.4rem);
+            font-weight: 900;
+            line-height: 1.08;
+            letter-spacing: -.02em;
+        }
+
+        .section-title .accent { color: var(--orange); }
+
+        /* =============================================
+           ABOUT
+        ============================================= */
+        .about {
+            padding: 8rem 5rem;
+            background: var(--cream);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 7rem;
+            align-items: center;
+        }
+
+        .about-body {
+            margin-top: 1.8rem;
+        }
+
+        .about-body p {
+            color: var(--gray);
+            font-size: 1rem;
+            line-height: 1.85;
+            margin-bottom: 1.2rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+            margin-top: 2.5rem;
+        }
+
+        .feature-card {
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            padding: 1.2rem 1.1rem;
+            display: flex;
+            gap: .9rem;
+            align-items: flex-start;
+            transition: box-shadow .25s;
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 6px 28px rgba(0,0,0,.07);
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--orange);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .feature-card strong {
+            display: block;
+            font-size: .85rem;
+            font-weight: 700;
+            margin-bottom: .2rem;
+        }
+
+        .feature-card span {
+            font-size: .78rem;
+            color: var(--gray);
+            line-height: 1.4;
+        }
+
+        .about-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 260px 200px;
+            gap: 1rem;
+        }
+
+        .about-images img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+        }
+
+        .about-images img:first-child {
+            grid-row: 1 / 3;
+            border-radius: var(--radius-lg);
+        }
+
+        /* =============================================
+           GALLERY
+        ============================================= */
+        .gallery {
+            padding: 8rem 5rem;
+            background: var(--white);
+        }
+
+        .gallery-header {
+            text-align: center;
+            max-width: 560px;
+            margin: 0 auto 4.5rem;
+        }
+
+        .gallery-header p {
+            color: var(--gray);
+            margin-top: 1rem;
+            line-height: 1.7;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            grid-template-rows: 320px 260px;
+            gap: 1rem;
+        }
+
+        .g-item {
+            overflow: hidden;
+            border-radius: var(--radius-md);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .g-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .55s cubic-bezier(.25,.46,.45,.94);
+        }
+
+        .g-item:hover img { transform: scale(1.07); }
+
+        .g-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(13,13,13,0);
+            transition: background .3s;
+        }
+
+        .g-item:hover::after { background: rgba(13,13,13,.12); }
+
+        .g-item.span-row { grid-row: span 2; }
+
+        /* =============================================
+           PRODUCTS
+        ============================================= */
+        .products {
+            padding: 8rem 5rem;
+            background: var(--black);
+            text-align: center;
+        }
+
+        .products .section-eyebrow { color: var(--orange); }
+        .products .section-title { color: var(--white); }
+
+        .products-sub {
+            color: rgba(255,255,255,.5);
+            max-width: 480px;
+            margin: 1.2rem auto 4rem;
+            line-height: 1.75;
+            font-size: .95rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 1080px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: rgba(255,255,255,.04);
+            border: 1px solid rgba(255,255,255,.07);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem 2rem;
+            text-align: left;
+            transition: background .3s, border-color .3s, transform .3s;
+        }
+
+        .product-card:hover {
+            background: rgba(245,166,35,.07);
+            border-color: rgba(245,166,35,.28);
+            transform: translateY(-5px);
+        }
+
+        .product-badge {
+            width: 54px;
+            height: 54px;
+            background: var(--orange);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-card h3 {
+            color: var(--white);
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: .75rem;
+        }
+
+        .product-card p {
+            color: rgba(255,255,255,.5);
+            font-size: .875rem;
+            line-height: 1.75;
+        }
+
+        /* =============================================
+           BANNER PHOTOS
+        ============================================= */
+        .banner-trio {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            height: 480px;
+        }
+
+        .banner-panel {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .banner-panel img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .6s ease;
+        }
+
+        .banner-panel:hover img { transform: scale(1.06); }
+
+        .banner-panel::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(13,13,13,.55) 0%, transparent 55%);
+        }
+
+        /* =============================================
+           PROCESS
+        ============================================= */
+        .process {
+            padding: 8rem 5rem;
+            background: var(--cream);
+            text-align: center;
+        }
+
+        .process-header {
+            max-width: 560px;
+            margin: 0 auto 5.5rem;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1060px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 31px;
+            left: 12.5%;
+            right: 12.5%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--orange), var(--orange-dark));
+            z-index: 0;
+        }
+
+        .step-card {
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-num {
+            width: 62px;
+            height: 62px;
+            background: var(--orange);
+            color: var(--black);
+            font-size: 1.25rem;
+            font-weight: 900;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            border: 4px solid var(--cream);
+            box-shadow: 0 0 0 2px var(--orange);
+        }
+
+        .step-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: .6rem;
+        }
+
+        .step-card p {
+            font-size: .83rem;
+            color: var(--gray);
+            line-height: 1.65;
+        }
+
+        /* =============================================
+           CTA BAND
+        ============================================= */
+        .cta-band {
+            background: var(--orange);
+            padding: 5rem 5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .cta-band-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 3vw, 2.6rem);
+            font-weight: 900;
+            color: var(--black);
+            line-height: 1.1;
+        }
+
+        .cta-band-text p {
+            color: rgba(13,13,13,.65);
+            margin-top: .6rem;
+            font-size: .95rem;
+        }
+
+        .btn-dark {
+            background: var(--black);
+            color: var(--white);
+            padding: 1rem 2.8rem;
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: .9rem;
+            text-decoration: none;
+            letter-spacing: .04em;
+            white-space: nowrap;
+            transition: background .2s, transform .2s;
+        }
+
+        .btn-dark:hover {
+            background: #2a2a2a;
+            transform: translateY(-2px);
+        }
+
+        /* =============================================
+           CONTACT
+        ============================================= */
+        .contact {
+            padding: 8rem 5rem;
+            background: var(--white);
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 7rem;
+            align-items: start;
+        }
+
+        .contact-info .section-title { margin-top: 1rem; }
+
+        .contact-info > p {
+            color: var(--gray);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin: 1.5rem 0 2.5rem;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .c-item {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .c-icon {
+            width: 46px;
+            height: 46px;
+            background: var(--orange-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .c-item strong {
+            display: block;
+            font-size: .72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            color: var(--gray);
+        }
+
+        .c-item span {
+            font-size: .93rem;
+            font-weight: 500;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: .45rem;
+        }
+
+        .form-group label {
+            font-size: .7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            color: var(--gray);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: .85rem 1.15rem;
+            border: 1.5px solid #E5E5E5;
+            border-radius: var(--radius-sm);
+            font-family: inherit;
+            font-size: .92rem;
+            color: var(--black);
+            outline: none;
+            background: var(--gray-light);
+            transition: border-color .2s, background .2s;
+            -webkit-appearance: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--orange);
+            background: var(--white);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 110px;
+        }
+
+        .btn-submit {
+            background: var(--orange);
+            color: var(--black);
+            padding: 1rem 2.5rem;
+            border-radius: 100px;
+            font-family: inherit;
+            font-size: .9rem;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            letter-spacing: .04em;
+            align-self: flex-start;
+            transition: transform .2s, box-shadow .2s, background .2s;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px var(--orange-glow);
+            background: var(--orange-dark);
+        }
+
+        /* =============================================
+           FOOTER
+        ============================================= */
+        footer {
+            background: var(--black);
+            padding: 4.5rem 5rem 2.5rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2.2fr 1fr 1fr;
+            gap: 5rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid rgba(255,255,255,.07);
+            margin-bottom: 2rem;
+        }
+
+        .footer-brand img {
+            height: 46px;
+            filter: brightness(0) invert(1);
+            margin-bottom: 1.1rem;
+        }
+
+        .footer-brand p {
+            color: rgba(255,255,255,.38);
+            font-size: .84rem;
+            line-height: 1.75;
+            max-width: 300px;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            font-size: .7rem;
+            font-weight: 700;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            margin-bottom: 1.3rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: .8rem;
+        }
+
+        .footer-col a {
+            color: rgba(255,255,255,.38);
+            text-decoration: none;
+            font-size: .84rem;
+            transition: color .2s;
+        }
+
+        .footer-col a:hover { color: var(--orange); }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: rgba(255,255,255,.22);
+            font-size: .75rem;
+        }
+
+        .footer-bee {
+            color: var(--orange);
+            font-size: 1.1rem;
+        }
+
+        /* =============================================
+           SCROLL REVEAL
+        ============================================= */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity .65s ease, transform .65s ease;
+        }
+
+        .reveal.visible { opacity: 1; transform: none; }
+        .delay-1 { transition-delay: .1s; }
+        .delay-2 { transition-delay: .2s; }
+        .delay-3 { transition-delay: .3s; }
+        .delay-4 { transition-delay: .4s; }
+
+        /* =============================================
+           KEYFRAMES
+        ============================================= */
+        @keyframes fadeDown {
+            from { opacity: 0; transform: translateY(-18px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes scrollBounce {
+            0%,100% { transform: scaleY(.5); opacity: .35; transform-origin: top; }
+            50%      { transform: scaleY(1);  opacity: 1;   transform-origin: top; }
+        }
+
+        /* =============================================
+           RESPONSIVE
+        ============================================= */
+        @media (max-width: 1100px) {
+            nav, nav.scrolled { padding-left: 2.5rem; padding-right: 2.5rem; }
+            .about, .contact { padding: 5rem 2.5rem; gap: 3.5rem; }
+            .gallery, .products, .process { padding: 5rem 2.5rem; }
+            .stats { padding: 2.5rem; gap: 3rem; }
+            .cta-band { padding: 4rem 2.5rem; }
+            footer { padding: 3.5rem 2.5rem 2rem; }
+        }
+
+        @media (max-width: 900px) {
+            .about         { grid-template-columns: 1fr; }
+            .contact       { grid-template-columns: 1fr; }
+            .gallery-grid  { grid-template-columns: 1fr 1fr; grid-template-rows: 220px 220px 220px; }
+            .g-item.span-row { grid-row: span 1; }
+            .products-grid { grid-template-columns: 1fr 1fr; }
+            .process-steps { grid-template-columns: 1fr 1fr; }
+            .process-steps::before { display: none; }
+            .banner-trio   { grid-template-columns: 1fr; height: auto; }
+            .banner-panel  { height: 280px; }
+            .footer-grid   { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+            .footer-grid > :first-child { grid-column: 1 / -1; }
+            .about-images  { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 160px; }
+        }
+
+        @media (max-width: 640px) {
+            nav { padding: 1.1rem 1.5rem; }
+            nav.scrolled { padding: .8rem 1.5rem; }
+            .nav-links  { display: none; }
+            .hamburger  { display: flex; }
+            .hero h1    { font-size: 3.2rem; }
+            .stats      { gap: 2rem; padding: 2rem 1.5rem; }
+            .about, .contact, .gallery, .products, .process { padding: 4rem 1.5rem; }
+            .gallery-grid { grid-template-columns: 1fr; grid-template-rows: none; }
+            .g-item     { height: 220px; }
+            .products-grid { grid-template-columns: 1fr; }
+            .process-steps { grid-template-columns: 1fr; gap: 2rem; }
+            .cta-band   { padding: 3rem 1.5rem; flex-direction: column; }
+            .banner-trio { grid-template-columns: 1fr; }
+            .form-row   { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+            footer      { padding: 3rem 1.5rem 2rem; }
+            .footer-bottom { flex-direction: column; gap: .5rem; text-align: center; }
+            .about-images { grid-template-columns: 1fr; grid-template-rows: 220px 160px 160px; }
+            .about-images img:first-child { grid-row: auto; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ================================================
+     NAVBAR
+================================================ -->
+<nav id="navbar">
+    <a href="#inicio" class="nav-logo">
+        <img src="Logo-2024.png" alt="Mostyn">
+        <span class="nav-logo-text">Most<em>yn</em></span>
+    </a>
+    <ul class="nav-links">
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#galeria">Galería</a></li>
+        <li><a href="#productos">Productos</a></li>
+        <li><a href="#proceso">Proceso</a></li>
+        <li><a href="#contacto" class="nav-cta">Contacto</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+    </div>
+</nav>
+
+<!-- ================================================
+     HERO
+================================================ -->
+<section class="hero" id="inicio">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <img src="Logo-2024.png" alt="Mostyn Apicultura" class="hero-logo">
+        <span class="hero-eyebrow">Apicultura Artesanal</span>
+        <h1>Miel <span class="accent">Natural</span><br>Mostyn</h1>
+        <p class="hero-desc">Directo del campo a tu mesa. 100% pura, cosechada con pasión y respeto por las abejas y el entorno natural.</p>
+        <div class="hero-actions">
+            <a href="#productos" class="btn-primary">Ver productos</a>
+            <a href="#nosotros" class="btn-ghost">Conocer más</a>
+        </div>
+    </div>
+    <div class="hero-scroll">
+        <div class="hero-scroll-line"></div>
+        <span>Scroll</span>
+    </div>
+</section>
+
+<!-- ================================================
+     STATS
+================================================ -->
+<div class="stats">
+    <div class="stat-item reveal">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Miel Pura</div>
+    </div>
+    <div class="stat-item reveal delay-1">
+        <div class="stat-num">0</div>
+        <div class="stat-label">Aditivos</div>
+    </div>
+    <div class="stat-item reveal delay-2">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Dedicación</div>
+    </div>
+    <div class="stat-item reveal delay-3">
+        <div class="stat-num">1°</div>
+        <div class="stat-label">Calidad</div>
+    </div>
+</div>
+
+<!-- ================================================
+     ABOUT
+================================================ -->
+<section class="about" id="nosotros">
+    <div>
+        <span class="section-eyebrow reveal">Quiénes Somos</span>
+        <h2 class="section-title reveal delay-1">Apicultura con <span class="accent">alma</span><br>y tradición</h2>
+        <div class="about-body">
+            <p class="reveal delay-2">En Mostyn Apicultura nos dedicamos a la cría responsable de abejas y a la producción de miel natural de la más alta calidad. Cada frasco cuenta la historia de miles de abejas trabajando en armonía con el entorno.</p>
+            <p class="reveal delay-2">Nuestro compromiso es ofrecerte un producto auténtico, sin procesamiento excesivo, preservando todas las propiedades naturales de la miel directamente desde el panal hasta tu hogar.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card reveal delay-2">
+                <div class="feature-icon">🌸</div>
+                <div>
+                    <strong>Flora Nativa</strong>
+                    <span>Colmenas en ambientes naturales libres de agroquímicos</span>
+                </div>
+            </div>
+            <div class="feature-card reveal delay-3">
+                <div class="feature-icon">✅</div>
+                <div>
+                    <strong>Sin Aditivos</strong>
+                    <span>100% pura miel de abejas, nada más</span>
+                </div>
+            </div>
+            <div class="feature-card reveal delay-3">
+                <div class="feature-icon">🧴</div>
+                <div>
+                    <strong>Envasado Artesanal</strong>
+                    <span>Proceso cuidado, limpio y controlado</span>
+                </div>
+            </div>
+            <div class="feature-card reveal delay-4">
+                <div class="feature-icon">🐝</div>
+                <div>
+                    <strong>Bienestar Animal</strong>
+                    <span>Manejo apícola responsable y sustentable</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="about-images reveal delay-2">
+        <img src="_DSC3132.jpg" alt="Abejas en colmena">
+        <img src="_DSC3178.jpg" alt="Detalle abeja sobre panal">
+        <img src="_DSC3306.jpg" alt="Abejas en panal de miel">
+    </div>
+</section>
+
+<!-- ================================================
+     GALLERY
+================================================ -->
+<section class="gallery" id="galeria">
+    <div class="gallery-header">
+        <span class="section-eyebrow reveal">Galería</span>
+        <h2 class="section-title reveal delay-1">El mundo de<br>nuestras <span class="accent">abejas</span></h2>
+        <p class="reveal delay-2">Fotografía real de nuestra actividad apícola, capturando la magia del trabajo colectivo de las abejas.</p>
+    </div>
+    <div class="gallery-grid">
+        <div class="g-item span-row reveal">
+            <img src="_DSC3273.jpg" alt="Abejas en panal">
+        </div>
+        <div class="g-item reveal delay-1">
+            <img src="_DSC3257.jpg" alt="Abeja macro">
+        </div>
+        <div class="g-item reveal delay-2">
+            <img src="_DSC3316.jpg" alt="Abeja en superficie">
+        </div>
+        <div class="g-item reveal delay-1">
+            <img src="_DSC3148.jpg" alt="Abejas en colmena">
+        </div>
+        <div class="g-item reveal delay-2">
+            <img src="_DSC3101.jpg" alt="Entrada de colmena">
+        </div>
+    </div>
+</section>
+
+<!-- ================================================
+     PRODUCTS
+================================================ -->
+<section class="products" id="productos">
+    <span class="section-eyebrow reveal">Nuestros Productos</span>
+    <h2 class="section-title reveal delay-1">Miel <span class="accent">pura</span>,<br>naturaleza en estado original</h2>
+    <p class="products-sub reveal delay-2">Cosechada directamente de nuestras colmenas, con el cuidado que merece cada gota de miel natural.</p>
+    <div class="products-grid">
+        <div class="product-card reveal">
+            <div class="product-badge">🍯</div>
+            <h3>Miel Natural</h3>
+            <p>100% miel de abejas sin ningún tipo de aditivo ni conservante. Cosechada en frío para preservar todas sus propiedades nutricionales y su sabor auténtico.</p>
+        </div>
+        <div class="product-card reveal delay-1">
+            <div class="product-badge">🌿</div>
+            <h3>Miel de Temporada</h3>
+            <p>Cada cosecha refleja la flora local del momento. Un producto vivo que cambia con las estaciones, ofreciendo sabores y aromas únicos en cada frasco.</p>
+        </div>
+        <div class="product-card reveal delay-2">
+            <div class="product-badge">👑</div>
+            <h3>Presentación Premium</h3>
+            <p>Envasado artesanalmente con la identidad Mostyn. Ideal como regalo especial o para quienes aprecian la calidad en cada detalle de un producto natural.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ================================================
+     BANNER TRIO
+================================================ -->
+<div class="banner-trio">
+    <div class="banner-panel">
+        <img src="_DSC3283.jpg" alt="Abeja trabajando">
+    </div>
+    <div class="banner-panel">
+        <img src="_DSC3293.jpg" alt="Colmena activa">
+    </div>
+    <div class="banner-panel">
+        <img src="_DSC3322.jpg" alt="Detalle abejas">
+    </div>
+</div>
+
+<!-- ================================================
+     PROCESS
+================================================ -->
+<section class="process" id="proceso">
+    <div class="process-header">
+        <span class="section-eyebrow reveal">El Proceso</span>
+        <h2 class="section-title reveal delay-1">De la <span class="accent">flor</span><br>a tu mesa</h2>
+    </div>
+    <div class="process-steps">
+        <div class="step-card reveal">
+            <div class="step-num">1</div>
+            <h3>Colmenas</h3>
+            <p>Nuestras abejas habitan colmenas bien cuidadas, ubicadas en zonas de flora nativa lejos de agroquímicos.</p>
+        </div>
+        <div class="step-card reveal delay-1">
+            <div class="step-num">2</div>
+            <h3>Cosecha</h3>
+            <p>Cosechamos cuando los panales están operculados, garantizando miel madura con bajo contenido de humedad.</p>
+        </div>
+        <div class="step-card reveal delay-2">
+            <div class="step-num">3</div>
+            <h3>Extracción</h3>
+            <p>Proceso limpio y sin calor excesivo para conservar enzimas, antioxidantes y el sabor auténtico de la miel.</p>
+        </div>
+        <div class="step-card reveal delay-3">
+            <div class="step-num">4</div>
+            <h3>Envasado</h3>
+            <p>Envasado artesanalmente, controlando cada detalle para entregarte el mejor producto en condiciones óptimas.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ================================================
+     CTA BAND
+================================================ -->
+<div class="cta-band">
+    <div class="cta-band-text">
+        <h2>¿Querés probar<br>nuestra miel?</h2>
+        <p>Contactanos y te contamos cómo conseguir tu frasco de Mostyn.</p>
+    </div>
+    <a href="#contacto" class="btn-dark">Hacer un pedido →</a>
+</div>
+
+<!-- ================================================
+     CONTACT
+================================================ -->
+<section class="contact" id="contacto">
+    <div class="contact-info">
+        <span class="section-eyebrow reveal">Contacto</span>
+        <h2 class="section-title reveal delay-1">Hablemos sobre<br><span class="accent">nuestra miel</span></h2>
+        <p class="reveal delay-2">Escribinos para consultas sobre disponibilidad, precios o para hacer un pedido. Respondemos a la brevedad.</p>
+        <div class="contact-details">
+            <div class="c-item reveal delay-2">
+                <div class="c-icon">📍</div>
+                <div>
+                    <strong>Ubicación</strong>
+                    <span>Argentina</span>
+                </div>
+            </div>
+            <div class="c-item reveal delay-3">
+                <div class="c-icon">📱</div>
+                <div>
+                    <strong>WhatsApp</strong>
+                    <span>Consultanos para contacto directo</span>
+                </div>
+            </div>
+            <div class="c-item reveal delay-4">
+                <div class="c-icon">📸</div>
+                <div>
+                    <strong>Instagram</strong>
+                    <span>@mostyn.apicultura</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form class="contact-form reveal delay-2" id="contactForm">
+        <div class="form-row">
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" placeholder="Tu nombre" autocomplete="given-name">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="tu@email.com" autocomplete="email">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="asunto">Consulta</label>
+            <select id="asunto">
+                <option value="" disabled selected>Seleccioná un tema</option>
+                <option>Consulta de precio</option>
+                <option>Hacer un pedido</option>
+                <option>Reventa / Distribución</option>
+                <option>Otro</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" placeholder="Contanos qué necesitás..."></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Enviar mensaje →</button>
+    </form>
+</section>
+
+<!-- ================================================
+     FOOTER
+================================================ -->
+<footer>
+    <div class="footer-grid">
+        <div class="footer-brand">
+            <img src="Logo-2024.png" alt="Mostyn Apicultura">
+            <p>Mostyn Apicultura — Miel natural producida con pasión, respeto por la naturaleza y un compromiso genuino con la calidad.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Navegación</h4>
+            <ul>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#galeria">Galería</a></li>
+                <li><a href="#productos">Productos</a></li>
+                <li><a href="#proceso">Proceso</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Producto</h4>
+            <ul>
+                <li><a href="#">Miel Natural</a></li>
+                <li><a href="#">Sin Aditivos</a></li>
+                <li><a href="#">Envasado Artesanal</a></li>
+                <li><a href="#">Apicultura Responsable</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span>© 2024 Mostyn Apicultura. Todos los derechos reservados.</span>
+        <span class="footer-bee">🐝</span>
+    </div>
+</footer>
+
+<!-- ================================================
+     SCRIPTS
+================================================ -->
+<script>
+    // --- Navbar scroll ---
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    // --- Hero parallax ---
+    const heroBg = document.getElementById('heroBg');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY < window.innerHeight * 1.2) {
+            heroBg.style.transform = `translateY(${window.scrollY * 0.28}px)`;
+        }
+    }, { passive: true });
+
+    // --- Scroll reveal ---
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.classList.add('visible');
+                revealObserver.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.12 });
+
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    // --- Hamburger (mobile) ---
+    const hamburger = document.getElementById('hamburger');
+    const navLinks  = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', () => {
+        const open = navLinks.style.display === 'flex';
+        navLinks.style.display = open ? 'none' : 'flex';
+        if (!open) {
+            Object.assign(navLinks.style, {
+                flexDirection: 'column',
+                position:      'fixed',
+                top:           '70px',
+                left:          '0',
+                right:         '0',
+                background:    'rgba(13,13,13,.97)',
+                padding:       '2rem',
+                gap:           '1.5rem',
+                zIndex:        '999'
+            });
+        } else {
+            navLinks.removeAttribute('style');
+        }
+    });
+
+    // Close mobile nav on link click
+    navLinks.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => navLinks.removeAttribute('style'));
+    });
+
+    // --- Contact form feedback ---
+    document.getElementById('contactForm').addEventListener('submit', e => {
+        e.preventDefault();
+        const btn = e.target.querySelector('.btn-submit');
+        btn.textContent = '¡Mensaje enviado! ✓';
+        btn.style.background = '#22c55e';
+        btn.style.color = '#fff';
+        setTimeout(() => {
+            btn.textContent = 'Enviar mensaje →';
+            btn.style.background = '';
+            btn.style.color = '';
+            e.target.reset();
+        }, 3500);
+    });
+</script>
+</body>
+</html>
