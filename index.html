@@ -162,17 +162,24 @@
         .hero-left {
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            padding: 8rem 4rem 5rem 5rem;
+            justify-content: space-between;
+            padding: 5.5rem 3rem 2.5rem 4rem;
             position: relative;
             z-index: 2;
+            min-height: 100dvh;
+        }
+
+        .hero-body {
+            display: flex;
+            flex-direction: column;
+            margin: auto 0;
+            padding: 1.5rem 0;
         }
 
         .hero-wordmark {
             display: flex;
             align-items: center;
             gap: .7rem;
-            margin-bottom: 3.5rem;
             opacity: .85;
             animation: fadeDown .7s ease both;
         }
@@ -215,12 +222,17 @@
         }
 
         .hero h1 {
-            font-size: clamp(3.5rem, 7.5vw, 8rem);
+            font-size: clamp(2.4rem, 4.4vw, 4.6rem);
             font-weight: 500;
-            line-height: .92;
-            letter-spacing: -.035em;
-            margin-bottom: 2rem;
+            line-height: 1;
+            letter-spacing: -.025em;
+            margin-bottom: 1.5rem;
             animation: fadeDown .7s .16s ease both;
+            max-width: 16ch;
+        }
+
+        .hero-desc {
+            margin-bottom: 2.2rem;
         }
 
         .hero h1 .it {
@@ -282,11 +294,10 @@
         .btn-ghost:hover { border-color: rgba(255,255,255,.7); background: rgba(255,255,255,.06); }
 
         .hero-meta {
-            position: absolute;
-            bottom: 3rem;
-            left: 5rem;
             display: flex;
             gap: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,.08);
             animation: fadeDown .7s .5s ease both;
         }
 
@@ -1130,8 +1141,8 @@
         ============================================= */
         @media (max-width: 1200px) {
             nav, nav.scrolled { padding-left: 2rem; padding-right: 2rem; }
-            .hero-left { padding: 7rem 3rem 4rem 2.5rem; }
-            .hero-meta { left: 2.5rem; }
+            .hero-left { padding: 6rem 2.5rem 2.5rem 2.5rem; }
+            .hero-meta { gap: 2rem; }
             .about, .gallery, .products, .process, .contact { padding: 6rem 2.5rem; }
             .pull-quote { padding: 5rem 2.5rem; }
             .nutri-strip { padding: 2rem 2.5rem; }
@@ -1141,9 +1152,10 @@
 
         @media (max-width: 980px) {
             .hero { grid-template-columns: 1fr; min-height: auto; }
-            .hero-left { padding: 7rem 2rem 3rem; }
-            .hero-right { height: 60vh; }
-            .hero-meta { position: static; margin-top: 3rem; left: 0; }
+            .hero-left { padding: 6rem 1.8rem 2.5rem; min-height: auto; }
+            .hero-body { padding: 2rem 0; }
+            .hero-right { height: 55vh; min-height: 380px; }
+            .hero-meta { gap: 1.8rem; }
             .nutri-strip { grid-template-columns: 1fr 1fr; }
             .nutri-label { grid-column: 1 / -1; padding-bottom: .5rem; border-bottom: 1px solid var(--gray-line); }
             .about, .contact { grid-template-columns: 1fr; gap: 3rem; }
@@ -1177,8 +1189,9 @@
             nav.scrolled { padding: .8rem 1.5rem; }
             .nav-links { display: none; }
             .hamburger { display: flex; }
-            .hero-left { padding: 6rem 1.5rem 3rem; }
-            .hero h1 { font-size: 3.2rem; }
+            .hero-left { padding: 5.5rem 1.5rem 2.5rem; }
+            .hero h1 { font-size: 2.6rem; max-width: 100%; }
+            .hero-desc { font-size: 1rem; }
             .hero-meta { gap: 2rem; }
             .nutri-strip { grid-template-columns: 1fr 1fr; padding: 1.8rem 1.5rem; gap: 1.2rem; }
             .about, .gallery, .products, .process, .contact { padding: 5rem 1.5rem; }
@@ -1226,15 +1239,17 @@
             <img src="Logo-2024.png" alt="">
             <span>Most<em>yn</em> Apicultura</span>
         </div>
-        <span class="hero-tag">Producción Artesanal · Argentina</span>
-        <h1>Miel <span class="it">natural,</span><br>cosechada con<br>oficio.</h1>
-        <p class="hero-desc">Directo del campo a tu mesa. Pura, sin procesar, manteniendo todas las propiedades originales del panal.</p>
-        <div class="hero-actions">
-            <a href="#productos" class="btn-primary">
-                Ver productos
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </a>
-            <a href="#nosotros" class="btn-ghost">Conocer la marca</a>
+        <div class="hero-body">
+            <span class="hero-tag">Producción Artesanal · Argentina</span>
+            <h1>Miel <span class="it">natural,</span> cosechada con oficio.</h1>
+            <p class="hero-desc">Directo del campo a tu mesa. Pura, sin procesar, manteniendo todas las propiedades originales del panal.</p>
+            <div class="hero-actions">
+                <a href="#productos" class="btn-primary">
+                    Ver productos
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </a>
+                <a href="#nosotros" class="btn-ghost">Conocer la marca</a>
+            </div>
         </div>
         <div class="hero-meta">
             <div class="hero-meta-item">
