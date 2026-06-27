@@ -1615,17 +1615,80 @@
         a.addEventListener('click', () => navLinks.removeAttribute('style'));
     });
 
-    document.getElementById('contactForm').addEventListener('submit', e => {
+    // ====================================================================
+    // ENDPOINT DE PEDIDOS — Google Apps Script
+    // Reemplazá esta URL por la que te de Google al publicar el script.
+    // Mientras esté en '' el formulario muestra "demo" sin enviar nada.
+    // ====================================================================
+    const PEDIDOS_ENDPOINT = '';
+
+    document.getElementById('contactForm').addEventListener('submit', async (e) => {
         e.preventDefault();
-        const btn = e.target.querySelector('.btn-submit');
+        const form = e.target;
+        const btn = form.querySelector('.btn-submit');
         const original = btn.innerHTML;
-        btn.innerHTML = 'Mensaje enviado';
-        btn.style.background = '#22c55e';
-        setTimeout(() => {
-            btn.innerHTML = original;
-            btn.style.background = '';
-            e.target.reset();
-        }, 3500);
+
+        const payload = {
+            nombre:  document.getElementById('nombre').value.trim(),
+            email:   document.getElementById('email').value.trim(),
+            asunto:  document.getElementById('asunto').value,
+            mensaje: document.getElementById('mensaje').value.trim()
+        };
+
+        // Validación mínima
+        if (!payload.nombre || !payload.email || !payload.asunto || !payload.mensaje) {
+            btn.innerHTML = 'Completá todos los campos';
+            btn.style.background = '#dc2626';
+            btn.style.color = '#fff';
+            setTimeout(() => {
+                btn.innerHTML = original;
+                btn.style.background = '';
+                btn.style.color = '';
+            }, 2500);
+            return;
+        }
+
+        btn.innerHTML = 'Enviando…';
+        btn.disabled = true;
+
+        try {
+            if (PEDIDOS_ENDPOINT && PEDIDOS_ENDPOINT.indexOf('http') === 0) {
+                // Google Apps Script requiere no-cors desde el browser
+                await fetch(PEDIDOS_ENDPOINT, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+            } else {
+                // Modo demo: simula el envío
+                await new Promise(r => setTimeout(r, 800));
+            }
+
+            btn.innerHTML = 'Pedido registrado';
+            btn.style.background = '#22c55e';
+            btn.style.color = '#fff';
+
+            setTimeout(() => {
+                btn.innerHTML = original;
+                btn.style.background = '';
+                btn.style.color = '';
+                btn.disabled = false;
+                form.reset();
+            }, 3500);
+
+        } catch (err) {
+            console.error('Error al enviar pedido:', err);
+            btn.innerHTML = 'Error — probá de nuevo';
+            btn.style.background = '#dc2626';
+            btn.style.color = '#fff';
+            btn.disabled = false;
+            setTimeout(() => {
+                btn.innerHTML = original;
+                btn.style.background = '';
+                btn.style.color = '';
+            }, 3000);
+        }
     });
 </script>
 </body>
