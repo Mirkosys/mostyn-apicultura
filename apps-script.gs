@@ -10,7 +10,7 @@
  */
 
 const SHEET_NAME = 'Pedidos';
-const NOTIFICATION_EMAIL = 'dachubut@gmail.com'; // poné '' para desactivar emails
+const NOTIFICATION_EMAIL = 'mostynmieles@gmail.com'; // poné '' para desactivar emails
 
 function doPost(e) {
   try {
