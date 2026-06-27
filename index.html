@@ -1485,15 +1485,15 @@
                     <span>Consultanos para contacto directo</span>
                 </div>
             </div>
-            <div class="c-item reveal d4">
+            <a href="https://www.instagram.com/mostynmieles/" target="_blank" rel="noopener noreferrer" class="c-item reveal d4" style="text-decoration:none;color:inherit;">
                 <div class="ci">
                     <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01"/></svg>
                 </div>
                 <div>
                     <strong>Instagram</strong>
-                    <span>@mostyn.apicultura</span>
+                    <span>@mostynmieles</span>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
     <form class="contact-form reveal d2" id="contactForm">
@@ -1556,7 +1556,7 @@
             <h4>Contacto</h4>
             <ul>
                 <li><a href="#contacto">Hacer un pedido</a></li>
-                <li><a href="#">Instagram</a></li>
+                <li><a href="https://www.instagram.com/mostynmieles/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
                 <li><a href="#">WhatsApp</a></li>
             </ul>
         </div>
@@ -1653,12 +1653,12 @@
 
         try {
             if (PEDIDOS_ENDPOINT && PEDIDOS_ENDPOINT.indexOf('http') === 0) {
-                // Google Apps Script requiere no-cors desde el browser
+                // Google Apps Script requiere no-cors + form-encoded (application/json es bloqueado)
+                const params = new URLSearchParams(payload);
                 await fetch(PEDIDOS_ENDPOINT, {
                     method: 'POST',
                     mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
+                    body: params
                 });
             } else {
                 // Modo demo: simula el envío

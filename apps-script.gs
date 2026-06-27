@@ -37,7 +37,8 @@ function doPost(e) {
       sheet.setColumnWidth(7, 200);
     }
 
-    const data = JSON.parse(e.postData.contents);
+    // Recibe form-encoded (URLSearchParams desde el browser con no-cors)
+    const data = e.parameter;
     const fecha = new Date();
 
     // Agregar fila con el pedido
