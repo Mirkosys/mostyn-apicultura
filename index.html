@@ -1653,12 +1653,13 @@
 
         try {
             if (PEDIDOS_ENDPOINT && PEDIDOS_ENDPOINT.indexOf('http') === 0) {
-                // Google Apps Script requiere no-cors + form-encoded (application/json es bloqueado)
-                const params = new URLSearchParams(payload);
-                await fetch(PEDIDOS_ENDPOINT, {
+                // Enviar como query string + body: e.parameter lo recibe en Apps Script
+                // sin importar si el POST body se pierde en algún redirect interno
+                const qs = new URLSearchParams(payload).toString();
+                await fetch(PEDIDOS_ENDPOINT + '?' + qs, {
                     method: 'POST',
                     mode: 'no-cors',
-                    body: params
+                    body: new URLSearchParams(payload)
                 });
             } else {
                 // Modo demo: simula el envío

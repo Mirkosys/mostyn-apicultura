@@ -37,8 +37,17 @@ function doPost(e) {
       sheet.setColumnWidth(7, 200);
     }
 
-    // Recibe form-encoded (URLSearchParams desde el browser con no-cors)
-    const data = e.parameter;
+    // Parsear datos: acepta form-encoded (e.parameter), JSON (postData) o URL-encoded body
+    let data = {};
+    if (e.parameter && e.parameter.nombre) {
+      data = e.parameter;
+    } else if (e.postData && e.postData.contents) {
+      try {
+        data = JSON.parse(e.postData.contents);
+      } catch (_) {
+        new URLSearchParams(e.postData.contents).forEach(function(v, k) { data[k] = v; });
+      }
+    }
     const fecha = new Date();
 
     // Agregar fila con el pedido
