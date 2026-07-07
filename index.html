@@ -236,8 +236,6 @@
         }
 
         .hero h1 .it {
-            font-style: italic;
-            font-weight: 400;
             color: var(--orange);
         }
 
@@ -379,50 +377,6 @@
         }
 
         /* =============================================
-           NUTRITIONAL STRIP
-        ============================================= */
-        .nutri-strip {
-            background: var(--cream);
-            padding: 2.5rem 5rem;
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 1rem;
-            border-bottom: 1px solid var(--gray-line);
-        }
-
-        .nutri-label {
-            font-size: .68rem;
-            font-weight: 600;
-            letter-spacing: .15em;
-            text-transform: uppercase;
-            color: var(--gray-mid);
-            grid-column: 1;
-            display: flex;
-            align-items: center;
-        }
-
-        .nutri-item .v {
-            font-family: var(--display);
-            font-size: 2rem;
-            font-weight: 500;
-            color: var(--black);
-            line-height: 1;
-            margin-bottom: .4rem;
-        }
-
-        .nutri-item .v sup {
-            font-size: .9rem;
-            color: var(--orange);
-            margin-left: .15rem;
-        }
-
-        .nutri-item .l {
-            font-size: .72rem;
-            color: var(--gray);
-            font-weight: 500;
-        }
-
-        /* =============================================
            ABOUT — editorial asymmetric
         ============================================= */
         .about {
@@ -464,8 +418,6 @@
         }
 
         .about-title .it {
-            font-style: italic;
-            font-weight: 400;
             color: var(--orange);
         }
 
@@ -568,7 +520,6 @@
 
         .pull-quote blockquote {
             font-family: var(--display);
-            font-style: italic;
             font-weight: 400;
             font-size: clamp(1.8rem, 3.5vw, 3rem);
             line-height: 1.2;
@@ -577,7 +528,7 @@
             margin: 0 auto;
         }
 
-        .pull-quote blockquote .em { color: var(--orange); font-style: italic; }
+        .pull-quote blockquote .em { color: var(--orange); }
 
         /* =============================================
            GALLERY — masonry asymmetric
@@ -601,8 +552,6 @@
         }
 
         .gallery-head h2 .it {
-            font-style: italic;
-            font-weight: 400;
             color: var(--orange);
         }
 
@@ -669,8 +618,6 @@
         }
 
         .products-head h2 .it {
-            font-style: italic;
-            font-weight: 400;
             color: var(--orange);
         }
 
@@ -816,8 +763,6 @@
         }
 
         .process-head h2 .it {
-            font-style: italic;
-            font-weight: 400;
             color: var(--orange);
         }
 
@@ -861,7 +806,7 @@
             color: var(--black);
         }
 
-        .pstep h3 .it { font-style: italic; color: var(--orange); font-weight: 400; }
+        .pstep h3 .it { color: var(--orange); }
 
         .pstep p {
             font-size: 1rem;
@@ -890,7 +835,6 @@
             max-width: 18ch;
         }
 
-        .cta-band h2 .it { font-style: italic; font-weight: 400; }
 
         .btn-dark {
             background: var(--black);
@@ -929,7 +873,7 @@
             margin-bottom: 1.6rem;
         }
 
-        .contact-title .it { font-style: italic; font-weight: 400; color: var(--orange); }
+        .contact-title .it { color: var(--orange); }
 
         .contact-info > p {
             color: var(--gray);
@@ -1145,7 +1089,6 @@
             .hero-meta { gap: 2rem; }
             .about, .gallery, .products, .process, .contact { padding: 6rem 2.5rem; }
             .pull-quote { padding: 5rem 2.5rem; }
-            .nutri-strip { padding: 2rem 2.5rem; }
             .cta-band { padding: 4rem 2.5rem; }
             footer { padding: 4rem 2.5rem 2rem; }
         }
@@ -1156,8 +1099,6 @@
             .hero-body { padding: 2rem 0; }
             .hero-right { height: 55vh; min-height: 380px; }
             .hero-meta { gap: 1.8rem; }
-            .nutri-strip { grid-template-columns: 1fr 1fr; }
-            .nutri-label { grid-column: 1 / -1; padding-bottom: .5rem; border-bottom: 1px solid var(--gray-line); }
             .about, .contact { grid-template-columns: 1fr; gap: 3rem; }
             .about-left { position: static; }
             .features-row { grid-template-columns: 1fr 1fr; }
@@ -1193,7 +1134,6 @@
             .hero h1 { font-size: 2.6rem; max-width: 100%; }
             .hero-desc { font-size: 1rem; }
             .hero-meta { gap: 2rem; }
-            .nutri-strip { grid-template-columns: 1fr 1fr; padding: 1.8rem 1.5rem; gap: 1.2rem; }
             .about, .gallery, .products, .process, .contact { padding: 5rem 1.5rem; }
             .pull-quote { padding: 4rem 1.5rem; }
             .features-row { grid-template-columns: 1fr; }
@@ -1240,9 +1180,9 @@
             <span>Most<em>yn</em> Apicultura</span>
         </div>
         <div class="hero-body">
-            <span class="hero-tag">Producción Artesanal · Argentina</span>
-            <h1>Miel <span class="it">natural,</span> cosechada con oficio.</h1>
-            <p class="hero-desc">Directo del campo a tu mesa. Pura, sin procesar, manteniendo todas las propiedades originales del panal.</p>
+            <span class="hero-tag">Producción Familiar · Argentina</span>
+            <h1>Miel <span class="it">natural,</span> hecha en familia.</h1>
+            <p class="hero-desc">Somos dos hermanos dedicados al cuidado de las abejas. Miel pura, sin procesar, del panal directo a tu mesa.</p>
             <div class="hero-actions">
                 <a href="#productos" class="btn-primary">
                     Ver productos
@@ -1261,8 +1201,8 @@
                 <div class="label">Aditivos</div>
             </div>
             <div class="hero-meta-item">
-                <div class="num">48</div>
-                <div class="label">Porciones / kg</div>
+                <div class="num">2</div>
+                <div class="label">Hermanos al frente</div>
             </div>
         </div>
     </div>
@@ -1275,37 +1215,16 @@
     </div>
 </section>
 
-<!-- NUTRITIONAL STRIP -->
-<div class="nutri-strip">
-    <div class="nutri-label">Información<br>nutricional<br>por porción</div>
-    <div class="nutri-item reveal">
-        <div class="v">66<sup>kcal</sup></div>
-        <div class="l">Valor energético</div>
-    </div>
-    <div class="nutri-item reveal d1">
-        <div class="v">16<sup>g</sup></div>
-        <div class="l">Carbohidratos</div>
-    </div>
-    <div class="nutri-item reveal d2">
-        <div class="v">0<sup>g</sup></div>
-        <div class="l">Grasas totales</div>
-    </div>
-    <div class="nutri-item reveal d3">
-        <div class="v">20<sup>g</sup></div>
-        <div class="l">Porción (2 cucharadas)</div>
-    </div>
-</div>
-
 <!-- ABOUT -->
 <section class="about" id="nosotros">
     <div class="about-left">
         <span class="section-label reveal">Nosotros</span>
-        <h2 class="about-title reveal d1">Apicultura con <span class="it">alma</span> y tradición.</h2>
+        <h2 class="about-title reveal d1">Dos hermanos, un mismo <span class="it">oficio.</span></h2>
     </div>
     <div>
         <div class="about-body">
-            <p class="reveal">En Mostyn nos dedicamos a la cría responsable de abejas y a la producción de miel natural de la más alta calidad. Cada frasco cuenta la historia de miles de abejas trabajando en armonía con el entorno.</p>
-            <p class="reveal d1">Nuestro compromiso es ofrecer un producto auténtico, sin procesamiento excesivo, preservando todas las propiedades naturales de la miel directamente desde el panal hasta tu hogar.</p>
+            <p class="reveal">Mostyn es un emprendimiento familiar: somos dos hermanos que llevamos adelante cada etapa del trabajo apícola, desde el cuidado de las colmenas hasta el envasado de cada frasco. Lo que empezó como un proyecto compartido se convirtió en un oficio que nos une.</p>
+            <p class="reveal d1">Criamos a nuestras abejas con la convicción de que cuidar a los polinizadores es cuidar todo el entorno. Trabajamos sin apuro y sin procesamiento excesivo, para que la miel llegue a tu mesa tal como sale del panal.</p>
         </div>
         <div class="about-images reveal d2">
             <div><img src="_DSC3132.jpg" alt="Abejas en colmena"></div>
@@ -1336,8 +1255,8 @@
             <div class="feature">
                 <svg viewBox="0 0 24 24"><path d="M12 2C8 6 5 9 5 13a7 7 0 0014 0c0-4-3-7-7-11z"/></svg>
                 <div>
-                    <strong>Bienestar animal</strong>
-                    <span>Manejo apícola responsable y sustentable</span>
+                    <strong>Cuidado del polinizador</strong>
+                    <span>Cada colmena se maneja con respeto y sin apuro</span>
                 </div>
             </div>
         </div>
@@ -1347,7 +1266,7 @@
 <!-- PULL QUOTE -->
 <section class="pull-quote">
     <blockquote>
-        "Una buena miel <span class="em">no se fabrica.</span><br>Se cuida, se espera, y se cosecha cuando la abeja decide."
+        "Cuidar a las abejas es cuidar <span class="em">todo lo que florece.</span><br>Ese es el trabajo que compartimos como hermanos."
     </blockquote>
 </section>
 
@@ -1425,7 +1344,7 @@
 <section class="process" id="proceso">
     <div class="process-head">
         <h2 class="reveal">De la flor a tu <span class="it">mesa.</span></h2>
-        <p class="reveal d1">Un proceso artesanal y transparente, donde cada etapa se realiza con cuidado para preservar lo mejor de la naturaleza.</p>
+        <p class="reveal d1">Un proceso artesanal que hacemos entre los dos, donde cada etapa se realiza con cuidado para preservar lo mejor de la naturaleza.</p>
     </div>
     <div class="process-list">
         <div class="pstep reveal">
@@ -1533,7 +1452,7 @@
     <div class="footer-top">
         <div class="footer-brand">
             <img src="Logo-2024.png" alt="Mostyn Apicultura">
-            <p>Miel natural producida con pasión, respeto por la naturaleza y un compromiso genuino con la calidad. Argentina.</p>
+            <p>Miel natural producida en familia, con cariño por las abejas y un compromiso genuino con la calidad. Argentina.</p>
         </div>
         <div class="footer-col">
             <h4>Navegar</h4>
@@ -1563,7 +1482,7 @@
     </div>
     <div class="footer-bottom">
         <span>© 2026 Mostyn Apicultura. Todos los derechos reservados.</span>
-        <span class="mark">Most<em style="font-style:italic">yn</em></span>
+        <span class="mark">Mostyn</span>
     </div>
 </footer>
 
